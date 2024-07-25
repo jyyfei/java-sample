@@ -1,0 +1,27 @@
+//第一行指定了正在使用 proto3 语法：若未指定编译器会使用 proto2。这个指定语法行必须是文件的非空非注释的第一个行。
+syntax = "proto3";
+
+// 为每个 message 单独生成一个类文件
+option java_multiple_files = true;
+option java_package = "com.sample.grpc";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+//指定 .proto 文件包名，防止不同项目之间的命名冲突。在java中，包名称用作Java包。
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}

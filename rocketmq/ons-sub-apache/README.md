@@ -1,0 +1,1 @@
+使用ons-client连接自己搭建的开源RocketMQ集群
