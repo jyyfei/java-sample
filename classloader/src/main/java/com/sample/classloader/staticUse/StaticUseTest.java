@@ -8,7 +8,8 @@ import java.net.URLClassLoader;
  * 使用类的静态方法时会用哪个ClassLoader的类
  * <p>
  * 假设ClassLoader1和ClassLoader2都加载了SequenceGenerateUtil这个类，
- * 代码执行到SequenceGenerateUtil.nextId(tableName)时用哪个
+ * 代码执行到SequenceGenerateUtil.nextId(tableName)时用哪个？？？
+ * 目前来看StaticTestClass用哪个类加载器是根据StaticUseTest用哪个类加载器来决定的
  *
  * @author yunfei.jyf
  * @date 2024/4/22
