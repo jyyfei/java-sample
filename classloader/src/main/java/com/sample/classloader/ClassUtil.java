@@ -1,5 +1,7 @@
 package com.sample.classloader;
 
+import sun.net.www.ParseUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +17,78 @@ import java.security.ProtectionDomain;
  * @date 2024/4/22
  */
 public class ClassUtil {
+    public static URLClassLoader newMyAppClassloader(ClassLoader parent) {
+        final String var1 = System.getProperty("java.class.path");
+        final File[] var2 = var1 == null ? new File[0] : getClassPath(var1);
+        URL[] var1x = var1 == null ? new URL[0] : pathToURLs(var2);
+        return new URLClassLoader(var1x, parent);
+    }
+
+    private static File[] getClassPath(String var0) {
+        File[] var1;
+        if (var0 != null) {
+            int var2 = 0;
+            int var3 = 1;
+            boolean var4 = false;
+
+            int var5;
+            int var7;
+            for (var5 = 0; (var7 = var0.indexOf(File.pathSeparator, var5)) != -1; var5 = var7 + 1) {
+                ++var3;
+            }
+
+            var1 = new File[var3];
+            var4 = false;
+
+            for (var5 = 0; (var7 = var0.indexOf(File.pathSeparator, var5)) != -1; var5 = var7 + 1) {
+                if (var7 - var5 > 0) {
+                    var1[var2++] = new File(var0.substring(var5, var7));
+                } else {
+                    var1[var2++] = new File(".");
+                }
+            }
+
+            if (var5 < var0.length()) {
+                var1[var2++] = new File(var0.substring(var5));
+            } else {
+                var1[var2++] = new File(".");
+            }
+
+            if (var2 != var3) {
+                File[] var6 = new File[var2];
+                System.arraycopy(var1, 0, var6, 0, var2);
+                var1 = var6;
+            }
+        } else {
+            var1 = new File[0];
+        }
+
+        return var1;
+    }
+
+    private static URL[] pathToURLs(File[] var0) {
+        URL[] var1 = new URL[var0.length];
+
+        for (int var2 = 0; var2 < var0.length; ++var2) {
+            var1[var2] = getFileURL(var0[var2]);
+        }
+
+        return var1;
+    }
+
+    private static URL getFileURL(File var0) {
+        try {
+            var0 = var0.getCanonicalFile();
+        } catch (IOException var3) {
+        }
+
+        try {
+            return ParseUtil.fileToEncodedURL(var0);
+        } catch (MalformedURLException var2) {
+            throw new InternalError(var2);
+        }
+    }
+
     public static URLClassLoader newClassloader(String path) throws MalformedURLException {
         URL[] urls = {
                 new File(path).toURI().toURL()
