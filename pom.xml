@@ -26,6 +26,7 @@
         <module>grpc</module>
         <module>threadpool</module>
         <module>async-bean-init</module>
+        <module>interview</module>
     </modules>
 
 </project>
