@@ -77,16 +77,8 @@ public class OrderPrintNoFor4 {
             }
         }, "threadA");
 
-        Thread threadD = new Thread(() -> {
-            for (int i = 0; i < 10; ) {
-                System.out.println("******************D" + i + "D******************");
-                i++;
-            }
-        }, "threadD");
-
         threadB.start();
         threadC.start();
         threadA.start();
-//        threadD.start();
     }
 }
