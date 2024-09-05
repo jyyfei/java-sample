@@ -1,4 +1,4 @@
-package com.sample.juc.demo;
+package com.sample.juc.semaphore;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
