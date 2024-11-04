@@ -39,9 +39,20 @@ public class ReentrantLockSample {
 
                 lock.unlock();
                 System.out.println(lock.isLocked());
+
+                try {
+                    lock.lockInterruptibly();
+                    System.out.println("qqq");
+                } catch (InterruptedException e) {
+                    System.out.println("InterruptedException");
+                    System.out.println(lock.isLocked());
+                } finally {
+                    lock.unlock();
+                }
             }
         });
         thread.setName("test");
         thread.start();
+        thread.interrupt();
     }
 }
