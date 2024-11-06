@@ -1,5 +1,6 @@
 package com.spring.demo.circularReference;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
  */
 @Component
 public class ServiceA {
+    @Lazy
     @Resource
     private ServiceB serviceB;
 
