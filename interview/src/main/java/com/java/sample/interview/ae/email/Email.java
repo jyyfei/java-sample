@@ -1,6 +1,5 @@
 package com.java.sample.interview.ae.email;
 
-import com.c2f.boot.util.common.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -44,7 +43,7 @@ public class Email {
     }
 
     private Boolean titleGood(String titleLike, String emailTitle) {
-        if (StringUtil.isBlank(titleLike)) {
+        if (Objects.isNull(titleLike) || titleLike.isEmpty()) {
             return true;
         }
         return emailTitle.contains(titleLike);

@@ -10,7 +10,7 @@ public class EmailServiceTest {
         all.add(new Email(11, "你好World", LocalDateTime.now()));
         all.add(new Email(22, "你好World", LocalDateTime.now()));
         EmailServiceImpl emailService = new EmailServiceImpl();
-        List<Email> search = emailService.search(all, "aaa", null, null, null);
+        List<Email> search = emailService.search(all, "", null, null, null);
         System.out.println(search);
     }
 }
