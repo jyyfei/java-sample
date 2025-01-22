@@ -21,7 +21,6 @@ public class AlternatePrint {
         ReentrantLock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
 
-
         Thread threadA = new Thread(() -> {
             while (i <= 100) {
                 if (!isEven(i)) {
