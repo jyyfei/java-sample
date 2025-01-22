@@ -30,7 +30,7 @@ public class AlternatePrint {
                     System.out.println("threadA: " + i++);
                     condition.signal();
                     try {
-                        if (i <=  100) {
+                        if (i <= 100) {
                             condition.await();
                         }
                     } catch (InterruptedException e) {
@@ -52,7 +52,7 @@ public class AlternatePrint {
                     System.out.println("threadB: " + i++);
                     condition.signal();
                     try {
-                        if (i <=  100) {
+                        if (i <= 100) {
                             condition.await();
                         }
                     } catch (InterruptedException e) {
